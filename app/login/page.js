@@ -65,13 +65,13 @@ export default function LoginPage() {
   const fillDemoCredentials = (role) => {
     if (role === 'admin') {
       setFormData({
-        email: 'admin@sharksports.com',
-        password: 'admin123'
+        email: process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@sharksports.com',
+        password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'admin123'
       });
     } else {
       setFormData({
-        email: 'vendor@example.com',
-        password: 'vendor123'
+        email: process.env.NEXT_PUBLIC_VENDOR_EMAIL || 'vendor@example.com',
+        password: process.env.NEXT_PUBLIC_VENDOR_PASSWORD || 'vendor123'
       });
     }
   };
@@ -85,7 +85,7 @@ export default function LoginPage() {
           </div>
         </div>
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
-          Sign in to SharkSports
+          Sign in to {process.env.NEXT_PUBLIC_APP_NAME || 'SharkSports'}
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
           Sports venue booking platform
@@ -103,14 +103,14 @@ export default function LoginPage() {
                 onClick={() => fillDemoCredentials('admin')}
                 className="text-xs text-blue-700 hover:text-blue-900 block"
               >
-                Admin: admin@sharksports.com / admin123
+                Admin: {process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@sharksports.com'} / {process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'admin123'}
               </button>
               <button
                 type="button"
                 onClick={() => fillDemoCredentials('vendor')}
                 className="text-xs text-blue-700 hover:text-blue-900 block"
               >
-                Vendor: vendor@example.com / vendor123
+                Vendor: {process.env.NEXT_PUBLIC_VENDOR_EMAIL || 'vendor@example.com'} / {process.env.NEXT_PUBLIC_VENDOR_PASSWORD || 'vendor123'}
               </button>
             </div>
           </div>

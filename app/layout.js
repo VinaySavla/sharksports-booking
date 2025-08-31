@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "SharkSports - Sports Venue Booking Platform",
+  title: `${process.env.APP_NAME || 'SharkSports'} - Sports Venue Booking Platform`,
   description: "Professional sports venue booking and management platform",
 };
 

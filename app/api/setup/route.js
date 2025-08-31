@@ -13,10 +13,10 @@ export async function GET() {
 
     if (adminUsers.length === 0) {
       // Create default admin user
-      const adminPassword = await hashPassword('admin123');
+      const adminPassword = await hashPassword(process.env.ADMIN_PASSWORD || 'admin123');
       await query(
         'INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)',
-        ['Admin User', 'admin@sharksports.com', adminPassword, 'admin']
+        ['Admin User', process.env.ADMIN_EMAIL || 'admin@sharksports.com', adminPassword, 'admin']
       );
     }
 
@@ -27,10 +27,10 @@ export async function GET() {
 
     if (vendorUsers.length === 0) {
       // Create default vendor user
-      const vendorPassword = await hashPassword('vendor123');
+      const vendorPassword = await hashPassword(process.env.VENDOR_PASSWORD || 'vendor123');
       const vendorResult = await query(
         'INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)',
-        ['Vendor User', 'vendor@example.com', vendorPassword, 'vendor']
+        ['Vendor User', process.env.VENDOR_EMAIL || 'vendor@example.com', vendorPassword, 'vendor']
       );
       
       // Get the vendor ID for creating sample venues
@@ -138,8 +138,14 @@ export async function GET() {
       success: true,
       message: 'Database initialized successfully',
       defaultUsers: {
-        admin: { email: 'admin@sharksports.com', password: 'admin123' },
-        vendor: { email: 'vendor@example.com', password: 'vendor123' }
+        admin: { 
+          email: process.env.ADMIN_EMAIL || 'admin@sharksports.com', 
+          password: process.env.ADMIN_PASSWORD || 'admin123' 
+        },
+        vendor: { 
+          email: process.env.VENDOR_EMAIL || 'vendor@example.com', 
+          password: process.env.VENDOR_PASSWORD || 'vendor123' 
+        }
       }
     });
 

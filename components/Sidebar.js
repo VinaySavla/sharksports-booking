@@ -76,7 +76,7 @@ export default function Sidebar({ isOpen, onToggle, userRole = 'vendor' }) {
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">SS</span>
             </div>
-            <span className="font-bold text-lg text-gray-900">SharkSports</span>
+            <span className="font-bold text-lg text-gray-900">{process.env.NEXT_PUBLIC_APP_NAME || 'SharkSports'}</span>
           </div>
           <button
             onClick={onToggle}
