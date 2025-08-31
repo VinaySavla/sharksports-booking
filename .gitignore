@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# temporary and migration files
+migrate-*.js
+*.backup
+*.bak
+*.old
+*.tmp
+database-updates.sql
+
+# OS generated files
+Thumbs.db
+.DS_Store
